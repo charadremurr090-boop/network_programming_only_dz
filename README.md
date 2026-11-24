@@ -16,6 +16,8 @@
 
 <img width="545" height="61" alt="image" src="https://github.com/user-attachments/assets/ad7ffa49-143d-4621-9fca-6a0fa7d2144f" />
 
+Схема:
+
 ```mermaid
 sequenceDiagram
     participant C as Клиент (calc_client)
