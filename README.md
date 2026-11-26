@@ -29,3 +29,10 @@ sequenceDiagram
     C->>S: данные "2+3*4\n"
     S-->>C: данные "OK 14\n"
 ```
+# hw04 (17.11)
+
+Запуск сервера и трёх клиентов + проверка эхо и подключения/отключения:
+
+<img width="1438" height="816" alt="image" src="https://github.com/user-attachments/assets/966fab05-9778-4136-a392-e25b9082f670" />
+
+(Эссе представлено в папке hw04)
