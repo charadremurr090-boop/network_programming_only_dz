@@ -36,3 +36,23 @@ sequenceDiagram
 <img width="1438" height="816" alt="image" src="https://github.com/user-attachments/assets/966fab05-9778-4136-a392-e25b9082f670" />
 
 (Эссе представлено в папке hw04)
+
+hw03 (17.11)
+
+запуск select_server и wepoll:
+
+<img width="1035" height="58" alt="image" src="https://github.com/user-attachments/assets/fee3fd45-5fce-4700-bd51-8b6594ae0d2f" />
+
+клиент получает эхо:
+
+<img width="330" height="79" alt="image" src="https://github.com/user-attachments/assets/a6be38c7-e877-4596-8e14-aee0679c4d62" />
+
+
+Таблица:
+
+| Механизм | Сложность | Предел дескрипторов | Где доступно | Когда выбирать |
+|---|---|---|---|---|
+| select | O(n) | FD_SETSIZE (в Windows 64) | Везде (Windows / Linux / macOS) | Простые задачи, до 60-100 соединений. |
+| poll | O(n) | Без жёсткого лимита (ограничено памятью) | POSIX (Linux / macOS) | Переносимый код без лимита select, если производительность не критична. |
+| epoll | O(готовых) | Память ядра (тысячи и миллионы) | Linux (на Windows через wepoll) | Высоконагруженные серверы с тысячами соединений. |
+| kqueue | O(готовых) | Память ядра (тысячи и миллионы) | BSD, macOS | Аналог epoll для систем BSD/macOS. |
