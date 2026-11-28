@@ -47,7 +47,6 @@ hw03 (17.11)
 
 <img width="330" height="79" alt="image" src="https://github.com/user-attachments/assets/a6be38c7-e877-4596-8e14-aee0679c4d62" />
 
-
 Таблица:
 
 | Механизм | Сложность | Предел дескрипторов | Где доступно | Когда выбирать |
@@ -56,3 +55,34 @@ hw03 (17.11)
 | poll | O(n) | Без жёсткого лимита (ограничено памятью) | POSIX (Linux / macOS) | Переносимый код без лимита select, если производительность не критична. |
 | epoll | O(готовых) | Память ядра (тысячи и миллионы) | Linux (на Windows через wepoll) | Высоконагруженные серверы с тысячами соединений. |
 | kqueue | O(готовых) | Память ядра (тысячи и миллионы) | BSD, macOS | Аналог epoll для систем BSD/macOS. |
+
+# hw05 (20.11)
+
+Запуск сервера и клиента:
+
+<img width="390" height="328" alt="image" src="https://github.com/user-attachments/assets/a4e5f136-710e-4083-a048-4d0392c68224" />
+
+<img width="314" height="165" alt="image" src="https://github.com/user-attachments/assets/f72578fe-5eed-4759-ae54-3d5c04399cce" />
+
+<img width="420" height="1060" alt="image" src="https://github.com/user-attachments/assets/6eed6e3e-33be-495f-8327-84a0b01c7153" />
+
+Схема вызовов API (задание 03):
+
+| Операция | Метод | URL | Тело запроса | Успех | Ошибки |
+|---|---|---|---|---|---|
+| Список | GET | `/api/items` | — | 200 + массив | — |
+| Получить один | GET | `/api/items/{id}` | — | 200 + объект | 404 |
+| Создать | POST | `/api/items` | `{"title":"..."}` | 201 + объект, заголовок `Location` | 400 (нет/неверный title) |
+| Изменить | PUT | `/api/items/{id}` | `{"title":"..."}` | 200 + объект | 400, 404 |
+| Удалить | DELETE | `/api/items/{id}` | — | 204 без тела | 404 |
+| Другой метод или адрес | любой | `/api/...` | — | — | 404 |
+
+Статические файлы (задание 01):
+
+| Метод | URL | Ответ | Content-Type |
+|---|---|---|---|
+| GET | `/hello.txt` | содержимое файла, 200 | text/plain |
+| GET | `/data.json` | содержимое файла, 200 | application/json |
+| GET | `/нет.txt` | 404 | text/plain |
+| GET | `/../server.c` | 400 (защита от `..`) | text/plain |
+
